@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data Visualization Assignment</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+    <style>
+        body {
+            font-family: Urbanist;
+            background: #fef7e0;
+        }
+
+        .loginformbg {
+            background: #fff;
+            width: 400px;
+            margin: 100px 0px 0px 0px;
+            padding: 50px;
+            border-radius: 10px;
+            border: 1px solid #dadce0;
+        }
+
+        .loginformline01 {
+            margin-bottom: 20px;
+        }
+
+        .loginformtext01 {
+            font-weight: 600;
+        }
+
+        .loginformbox01 {
+            width: 100%;
+            border-radius: 10px;
+            padding: 5px 0px 5px 10px;
+        }
+
+        .loginformtext02 {
+            font-size: 14px;
+            font-weight: 600;
+            text-align: justify;
+            margin: 0px 10px 10px 174px;
+        }
+
+        .loginformbtn01 {
+            margin: 0px 0px 0px 0px;
+            width: 100%;
+            background: #cc0101;
+            border-color: #cc0101;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .footercopyrighttext {
+            text-align: center;
+            margin: 50px;
+        }
+
+        .searchbg {
+            background: #fff;
+            width: 100%;
+            margin: 100px 0px 0px 0px;
+            padding: 50px;
+            border-radius: 10px;
+            border: 1px solid #dadce0;
+        }
+
+        .searchbgtext01 {
+            text-align: center;
+            margin-top: 50px;
+            text-transform: capitalize;
+            font-weight: 600;
+            font-size: 31px;
+        }
+
+        .loginformline02btn {
+            margin: 0px 0px 0px 0px;
+            width: 100%;
+            background: #cc0101;
+            border-color: #cc0101;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .droupdown-cont div {
+            padding: 6px 11px;
+        }
+
+        .droupdown-cont {
+            border-radius: 12px;
+        }
+
+        .loginformbox02 {
+            width: 90%;
+            border-color: #cc0101;
+            border-radius: 10px;
+            padding: 5px 0px 5px 10px;
+        }
+
+        .bg-primary {
+            background: #cc0101 !important;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+
+        .leftdown6 {
+
+            padding: 16px;
+            margin: 15px 0px 0px 0px;
+            text-align: justify;
+            border: 2px solid #767676;
+            border-radius: 10px;
+            color: #767676;
+        }
+    </style>
+</head>
+
+<body onload="init()">
+    <!-- init() method defined in coffee.js-->
+    <!-- Menubar--starts-->
+    <section>
+        <nav class="navbar navbar-dark navbar-expand bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><b>DV Assignment</b></a>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Biswanath::23PGAI0040</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Menubar--ends-->
+    <div class="container">
+        <div class="row">
+            <h2 class="searchbgtext01">Sale's Report</h2>
+
+
+            <div class="col-lg-1 col-sm-1 col-12"></div>
+            <div class="col-lg-10 col-sm-10 col-12">
+                <div class="searchbg">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-12">
+
+                            <div class="loginformline01">
+                                <label for="xdropdown" class="loginformtext01">X:Axis </label>
+                                <select id="xdropdown" class="loginformbox01">
+                                    <option val="region">region</option>
+                                    <option val="category">category</option>
+                                </select>
+                            </div>
+                            <div class="loginformline01">
+                                <label for="ydropdown" class="loginformtext01">Y: Axis</label>
+                                <select id="ydropdown" class="loginformbox01">
+                                    <option val="sales">sales</option>
+                                    <option val="profit">profit</option>
+                                </select>
+                            </div>
+                            <button type="button" id="update" class="btn btn-secondary btn-sm loginformbtn01"
+                                onclick="updateClicked()">Update</button>
+
+                            <div class="leftdown6">
+                                <b>
+                                    <p>The visualization shown in the template consists of two drop-downs and an update
+                                        button. Once
+                                        the user chooses an attribute to show on the x-axis, say profit, and for the
+                                        y-axis, say region,
+                                        clicking on the update button should show a bar chart with accumulated sum of
+                                        profits over the
+                                        different regions.</p>
+                                </b>
+                            </div>
+                            <div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 col-sm-6 col-12">
+
+                            <div id="vis">
+                                <svg width=500 height=400></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-sm-1 col-12"></div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p class="footercopyrighttext">
+            © Biswanath 2023 || Made with ❤️ in India
+        </p>
+    </footer>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+    <script>
+        var chart;
+        var height = 200;
+        var width = 300;
+        //DEFINE YOUR VARIABLES UP HERE
+        bar.style("font-family", "Urbanist")
+
+        //Gets called when the page is loaded.
+        function init() {
+            // chart = d3.select('#vis').append('svg');
+            // vis = chart.append('g');
+            //PUT YOUR INIT CODE BELOW
+
+            // if (d[getXSelectedOption()] == 'region' && d[getYSelectedOption()] == 'sales') {
+            //   func1();
+            // } 
+
+        }
+
+        //Called when the update button is clicked
+        function updateClicked() {
+            var xdropdown = getXSelectedOption();
+            var ydropdown = getYSelectedOption();
+            var fileName = `data/cof.csv`
+            d3.csv(fileName).then(update);
+
+        }
+
+        function update(rawdata) {
+            //PUT YOUR UPDATE CODE BELOW\
+            var xdropdown = getXSelectedOption();
+            var ydropdown = getYSelectedOption();
+            const transformed_data = {};
+            rawdata.forEach(function (d) {
+                if (transformed_data[d[xdropdown]] == undefined) {
+                    transformed_data[d[xdropdown]] = parseInt(d[ydropdown]);
+                } else {
+                    transformed_data[d[xdropdown]] += parseInt(d[ydropdown]);
+                }
+            });
+            const data = Object.keys(transformed_data).map(function (key) {
+                return { [xdropdown]: key, [ydropdown]: transformed_data[key] };
+            });
+            console.log(data);
+            // let data = rawdata;
+            var svg_removed = d3.select("svg").selectAll("*").remove();
+            var svg = d3.select("svg"),
+                margin = 200,
+                width = svg.attr("width") - margin,
+                height = svg.attr("height") - margin;
+
+            var xScale = d3.scaleBand().range([0, width]).padding(0.4),
+                yScale = d3.scaleLinear().range([height, 0]);
+
+            var g = svg.append("g").attr("transform", "translate(" + 100 + "," + 100 + ")");
+            xScale.domain(data.map(function (d) { return d[xdropdown]; }));
+            yScale.domain([0, d3.max(data, function (d) { return d[ydropdown]; })]);
+
+            g.append("g").attr('transform', 'translate(0, ' + height + ')').call(d3.axisBottom(xScale))
+            g.append('g').attr('transform', 'translate(' + width + ', 0)').call(d3.axisRight(yScale).ticks(6));
+
+            var color = d3.scaleOrdinal(["#2c2424", "#767676", "#d69a9a", "#FF0000"]);
+
+            g.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("fill", function (d, i) { return color(i); })
+                .attr("x", function (d) { return xScale(d[xdropdown]); })
+                .attr("y", function (d) { return yScale(d[ydropdown]); })
+                .attr("width", xScale.bandwidth() + 19)
+                .attr("height", function (d) { return height - yScale(d[ydropdown]); });
+
+
+
+        }
+
+        // Returns the selected option in the X-axis dropdown. Use d[getXSelectedOption()] to retrieve value instead of d.getXSelectedOption()
+        function getXSelectedOption() {
+            var node = d3.select('#xdropdown').node();
+            var i = node.selectedIndex;
+
+            return node[i].value;
+        }
+
+        // Returns the selected option in the X-axis dropdown. 
+        function getYSelectedOption() {
+            var node = d3.select('#ydropdown').node();
+            var i = node.selectedIndex;
+            return node[i].value;
+        }
+
+    </script>
+
+    <!-- Code injected by live-server -->
+    <script>
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+	// ]]>
+    </script>
+</body>
+
+</html>
